@@ -17,17 +17,21 @@ Window {
     StackLayout {
         id: layout
         anchors.fill: parent
-        currentIndex: 1
+        currentIndex: 0
 
         Home.Home {
+            onAppSelected: layout.currentIndex = appId
 
         }
+
+        // Maps...
 
         VideoPlayer.VideoPlayer {
 
         }
 
     }
+
 
     // virtual keyboard
 

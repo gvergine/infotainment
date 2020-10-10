@@ -2,6 +2,9 @@ import QtQuick 2.12
 
 Item {
 
+    id: root
+    signal appSelected(int appId)
+
     GridView {
         id: gridView
         x: 80
@@ -13,22 +16,27 @@ Item {
             ListElement {
                 name: "Maps"
                 icon: "../assets/mapsicon.png"
+                appId: 1
             }
             ListElement {
                 name: "Video"
                 icon: "../assets/videoplayericon.png"
+                appId: 2
             }
             ListElement {
                 name: "Settings"
                 icon: "../assets/settingsicon.png"
+                appId: 3
             }
             ListElement {
                 name: "Light mode"
                 icon: "../assets/daynight.png"
+                appId: 4
             }
             ListElement {
                 name: "Turn off"
                 icon: "../assets/officon.png"
+                appId: 5
             }
 
         }
@@ -43,6 +51,13 @@ Item {
                     height: 128
                     source: icon
                     anchors.horizontalCenter: parent.horizontalCenter
+
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            root.appSelected(appId)
+                        }
+                    }
                 }
 
                 Text {
@@ -54,7 +69,12 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                 }
                 spacing: 10
+
+
             }
+
+
+
         }
         cellWidth: 236
         cellHeight: 236
