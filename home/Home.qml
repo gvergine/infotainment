@@ -11,6 +11,7 @@ Item {
         y: 80
         width: 1024 - 80
         height: 600 - 80
+        clip: true
 
         model: ListModel {
             ListElement {

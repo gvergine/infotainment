@@ -4,6 +4,7 @@ import QtQuick.VirtualKeyboard 2.4
 import QtQuick.Layouts 1.12
 
 import "home" as Home
+import "maps" as Maps
 import "videoplayer" as VideoPlayer
 
 Window {
@@ -24,11 +25,15 @@ Window {
 
         }
 
-        // Maps...
-
-        VideoPlayer.VideoPlayer {
+        Maps.Maps {
 
         }
+
+        VideoPlayer.VideoPlayer {
+            onHomeButton: layout.currentIndex = 0
+
+        }
+
 
     }
 

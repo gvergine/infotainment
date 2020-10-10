@@ -8,5 +8,10 @@
         <file>assets/daynight.png</file>
         <file>videoplayer/VideoPlayer.qml</file>
         <file>home/Home.qml</file>
+        <file>maps/Maps.qml</file>
+        <file>assets/homeicon.png</file>
+        <file>assets/backicon.png</file>
+        <file>videoplayer/SelectVideo.qml</file>
+        <file>videoplayer/VideoScreen.qml</file>
     </qresource>
 </RCC>
