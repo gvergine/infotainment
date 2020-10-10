@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>assets/mapsicon.png</file>
+        <file>assets/videoplayericon.png</file>
+        <file>assets/settingsicon.png</file>
+        <file>assets/officon.png</file>
+        <file>assets/daynight.png</file>
+        <file>videoplayer.qml</file>
+    </qresource>
+</RCC>
