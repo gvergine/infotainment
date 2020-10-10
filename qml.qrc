@@ -6,6 +6,7 @@
         <file>assets/settingsicon.png</file>
         <file>assets/officon.png</file>
         <file>assets/daynight.png</file>
-        <file>videoplayer.qml</file>
+        <file>videoplayer/VideoPlayer.qml</file>
+        <file>home/Home.qml</file>
     </qresource>
 </RCC>
