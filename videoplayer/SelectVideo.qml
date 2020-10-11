@@ -1,4 +1,5 @@
 import QtQuick 2.12
+import QtQml.Models 2.2
 
 Item {
 
@@ -55,6 +56,7 @@ Item {
 
     ListView {
         id: listView
+        objectName: "selectVideoListView"
         x: 20
         y: 100
         width: 1024 - 50
@@ -63,95 +65,9 @@ Item {
         clip: true
         snapMode: ListView.SnapToItem
 
+        model: fsm
 
 
-
-        model: ListModel {
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-            ListElement {
-                name: "A First video.mp4"
-            }
-            ListElement {
-                name: "A second video with very long name but really really long long long long.mkv"
-            }
-        }
 
         delegate: Item {
             id: item
@@ -164,10 +80,8 @@ Item {
                 color: "#aaaaaa"
                 radius: 10
 
-
-
                 Text {
-                    text: name
+                    text: fileName
                     color: "#333333"
                     font.pointSize: 20
                     font.weight: Font.Thin
@@ -182,19 +96,22 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        root.videoSelected(name)
+
+                        if (isDir)
+                            listView.model.select(path)
+                        else
+                            root.videoSelected(path)
+
                     }
                 }
 
             }
 
+       }
 
-
-        }
-
-        spacing: 10
-
+       spacing: 10
 
     }
+
 
 }

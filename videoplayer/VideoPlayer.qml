@@ -18,7 +18,7 @@ Item {
 
                 console.log(path)
                 layout.currentIndex = 1
-                videoScreen.video.source = "file:///home/giovanni/Downloads/videoplayback.mp4"
+                videoScreen.video.source = "file://" + path
                 videoScreen.video.play()
 
             }
