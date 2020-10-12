@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtMultimedia 5.12
 import QtQuick.Controls 2.12
+import QtGraphicalEffects 1.0
 
 Item {
     id: root
@@ -63,11 +64,11 @@ Item {
 
     function controlsVisible(visibility)
     {
-        background.visible = visibility
-        homeIcon.visible = visibility
-        backIcon.visible = visibility
-        progressTime.visible = visibility
-        timeText.visible = visibility
+        background.opacity = visibility ? 1 : 0
+        homeIcon.opacity = visibility? 1 : 0
+        backIcon.opacity = visibility? 1 : 0
+        progressTime.opacity = visibility? 1 : 0
+        timeText.opacity = visibility? 1 : 0
     }
 
 
@@ -78,10 +79,21 @@ Item {
         x: 0
         width: 1024
         height: 600
-        color: "#000000"
-        opacity: 0.4
+        opacity: 1
+
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#000000" }
+            GradientStop { position: 0.1; color: "#000000" }
+            GradientStop { position: 0.2; color: "#00ffffff" }
+            GradientStop { position: 0.8; color: "#00ffffff" }
+            GradientStop { position: 0.9; color: "#000000" }
+            GradientStop { position: 1.0; color: "#000000" }
+        }
 
 
+        Behavior on opacity {
+            NumberAnimation { duration: 1000 }
+        }
     }
 
     Image {
@@ -98,6 +110,11 @@ Item {
                 root.homeButton()
             }
         }
+
+
+        Behavior on opacity {
+            NumberAnimation { duration: 1000 }
+        }
     }
 
      Image {
@@ -113,6 +130,11 @@ Item {
                onClicked: {
                    root.backButton()
                }
+           }
+
+
+           Behavior on opacity {
+               NumberAnimation { duration: 1000 }
            }
        }
 
@@ -164,6 +186,9 @@ Item {
                border.color: "#ffffff"
            }
 
+           Behavior on opacity {
+               NumberAnimation { duration: 1000 }
+           }
      }
 
      Text {
@@ -178,6 +203,11 @@ Item {
          font.weight: Font.Thin
          font.family: "Helvetica"
          horizontalAlignment: Text.AlignRight
+
+
+         Behavior on opacity {
+             NumberAnimation { duration: 1000 }
+         }
      }
 
 

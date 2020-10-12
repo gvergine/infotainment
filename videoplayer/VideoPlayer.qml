@@ -16,12 +16,25 @@ Item {
             onHomeButton: root.homeButton()
             onVideoSelected: {
 
-                console.log(path)
                 layout.currentIndex = 1
-                videoScreen.video.stop()
-                videoScreen.video.source = "file://" + path
-                videoScreen.video.seek(0)
-                videoScreen.video.play()
+
+
+                var newPath = "file://" + path
+                console.log(newPath)
+                console.log(videoScreen.video.source)
+
+                if (newPath.localeCompare(videoScreen.video.source) === 0)  {// continue video
+
+                    videoScreen.video.play()
+
+                } else {
+                    videoScreen.video.stop()
+                    videoScreen.video.source = newPath
+                    videoScreen.video.seek(0)
+                    videoScreen.video.play()
+                }
+
+
 
             }
 
