@@ -36,26 +36,19 @@ Item {
 
         onPaused: {
             console.log("paused")
-            homeIcon.visible = true
-            backIcon.visible = true
-            progressTime.visible = true
-            timeText.visible = true
+            controlsVisible(true)
+
         }
 
         onPlaying: {
             console.log("playing")
-            homeIcon.visible = false
-            backIcon.visible = false
-            progressTime.visible = false
-            timeText.visible = false
+            controlsVisible(false)
+
         }
 
         onStopped: {
             console.log("stopped")
-            homeIcon.visible = true
-            backIcon.visible = true
-            progressTime.visible = true
-            timeText.visible = true
+            controlsVisible(true)
         }
 
         focus: true
@@ -66,6 +59,29 @@ Item {
       var minutes = Math.floor(millis / 60000);
       var seconds = ((millis % 60000) / 1000).toFixed(0);
       return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+    }
+
+    function controlsVisible(visibility)
+    {
+        background.visible = visibility
+        homeIcon.visible = visibility
+        backIcon.visible = visibility
+        progressTime.visible = visibility
+        timeText.visible = visibility
+    }
+
+
+
+    Rectangle {
+        id: background
+        y: 0
+        x: 0
+        width: 1024
+        height: 600
+        color: "#000000"
+        opacity: 0.4
+
+
     }
 
     Image {
@@ -118,6 +134,35 @@ Item {
              }
          }
 
+
+
+         background: Rectangle {
+               x: progressTime.leftPadding
+               y: progressTime.topPadding + progressTime.availableHeight / 2 - height / 2
+               implicitWidth: 200
+               implicitHeight: 4
+               width: progressTime.availableWidth
+               height: implicitHeight
+               radius: 2
+               color: "#ffffff"
+
+               Rectangle {
+                   width: progressTime.visualPosition * parent.width
+                   height: parent.height
+                   color: "#ff0000"
+                   radius: 2
+               }
+           }
+
+           handle: Rectangle {
+               x: progressTime.leftPadding + progressTime.visualPosition * (progressTime.availableWidth - width)
+               y: progressTime.topPadding + progressTime.availableHeight / 2 - height / 2
+               implicitWidth: 26
+               implicitHeight: 26
+               radius: 13
+               color: "#ffffff"
+               border.color: "#ffffff"
+           }
 
      }
 
