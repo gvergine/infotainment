@@ -26,6 +26,7 @@ Window {
         }
 
         Maps.Maps {
+            onHomeButton: layout.currentIndex = 0
 
         }
 

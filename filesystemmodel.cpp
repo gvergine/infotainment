@@ -59,15 +59,27 @@ QStringList videoExtensions = {"mp4","avi"};
 
 void FileSystemModel::populate()
 {
-    std::cout<<"populate"<<std::endl;
     beginResetModel();
     mDatas.clear();
-    QDir dir(fileSystemWatcher.directories().first());
-    for (QString directory:dir.entryList(QDir::AllEntries | QDir::NoDot | QDir::NoSymLinks)) {
-        if (currentRoot == root && directory == "..") continue;
-        QFileInfo qFileInfo = QFileInfo(QFile(currentRoot + "/" + directory));
-        if (qFileInfo.isFile() && !videoExtensions.contains(qFileInfo.completeSuffix())) continue;
-        mDatas.append(QFileInfo(QFile(currentRoot + "/" + directory)));
+
+    int len = fileSystemWatcher.directories().size();
+    if (len > 0) {
+        std::cout<<"len>0"<<std::endl;
+
+        QDir dir(fileSystemWatcher.directories().first());
+        for (QString directory:dir.entryList(QDir::AllEntries | QDir::NoDot | QDir::NoSymLinks)) {
+            if (currentRoot == root && directory == "..") continue;
+            QFileInfo qFileInfo = QFileInfo(QFile(currentRoot + "/" + directory));
+            if (qFileInfo.isFile() && !videoExtensions.contains(qFileInfo.completeSuffix())) continue;
+            mDatas.append(QFileInfo(QFile(currentRoot + "/" + directory)));
+        }
+    } else {
+        std::cout<<"len==0"<<std::endl;
+        fileSystemWatcher.removePaths(fileSystemWatcher.directories());
+        fileSystemWatcher.addPath(root);
+        currentRoot = root;
+
+        // here would ne a nice place to emit a signal for unmounted filesystem (root lost basically)
     }
     endResetModel();
 }
