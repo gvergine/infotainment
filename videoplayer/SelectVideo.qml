@@ -28,22 +28,6 @@ Item {
         }
     }
 
-
- /*   Image {
-        x:20
-        y:500
-        width: 64
-        height: 64
-        source: "../assets/backicon.png"
-
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                root.backButton()
-            }
-        }
-    }
-*/
     Text {
         x: 160
         y: 25

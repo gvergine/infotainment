@@ -52,16 +52,21 @@ QHash<int, QByteArray> FileSystemModel::roleNames() const
 }
 
 void FileSystemModel::directoryChanged(const QString& newValue) {
-   populate();
+    populate();
 }
+
+QStringList videoExtensions = {"mp4","avi"};
 
 void FileSystemModel::populate()
 {
+    std::cout<<"populate"<<std::endl;
     beginResetModel();
     mDatas.clear();
     QDir dir(fileSystemWatcher.directories().first());
     for (QString directory:dir.entryList(QDir::AllEntries | QDir::NoDot | QDir::NoSymLinks)) {
         if (currentRoot == root && directory == "..") continue;
+        QFileInfo qFileInfo = QFileInfo(QFile(currentRoot + "/" + directory));
+        if (qFileInfo.isFile() && !videoExtensions.contains(qFileInfo.completeSuffix())) continue;
         mDatas.append(QFileInfo(QFile(currentRoot + "/" + directory)));
     }
     endResetModel();
@@ -71,7 +76,9 @@ Q_INVOKABLE void FileSystemModel::select(const QString &path) {
     std::cout << path.toStdString() << std::endl;
     currentRoot = path;
     fileSystemWatcher.removePaths(fileSystemWatcher.directories());
-    fileSystemWatcher.addPath(currentRoot);
+    //fileSystemWatcher.addPath(root);
+    //if (root!=currentRoot)
+        fileSystemWatcher.addPath(currentRoot);
     populate();
 
 }

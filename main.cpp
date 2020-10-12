@@ -12,7 +12,7 @@ FileSystemModel * fsm;
 
 void init(QQmlContext *context) {
 
-    fsm = new FileSystemModel(0,"/home/giovanni");
+    fsm = new FileSystemModel(0,"/media/giovanni");
 
     context->setContextProperty("fsm", fsm);
 

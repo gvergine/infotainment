@@ -18,7 +18,9 @@ Item {
 
                 console.log(path)
                 layout.currentIndex = 1
+                videoScreen.video.stop()
                 videoScreen.video.source = "file://" + path
+                videoScreen.video.seek(0)
                 videoScreen.video.play()
 
             }
@@ -27,6 +29,16 @@ Item {
 
         VideoPlayer.VideoScreen {
             id: videoScreen
+            onHomeButton: {
+                video.pause()
+                root.homeButton()
+            }
+            onBackButton: {
+                console.log("Pausing")
+                video.pause()
+                layout.currentIndex = 0
+
+            }
 
 
        }

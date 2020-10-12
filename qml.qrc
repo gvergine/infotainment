@@ -13,5 +13,6 @@
         <file>assets/backicon.png</file>
         <file>videoplayer/SelectVideo.qml</file>
         <file>videoplayer/VideoScreen.qml</file>
+        <file>assets/playicon.png</file>
     </qresource>
 </RCC>
