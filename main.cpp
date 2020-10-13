@@ -1,24 +1,14 @@
 #include <QApplication>
 #include <QQmlApplicationEngine>
+#include <QQmlContext>
 
 #include "filesystemmodel.h"
 
-#include <QListView>
-#include <QQmlContext>
-
-#include <iostream>
-
-FileSystemModel * fsm;
+static FileSystemModel * fsm;
 
 void init(QQmlContext *context) {
-
-    fsm = new FileSystemModel(0,"/media/giovanni");
-
+    fsm = new FileSystemModel(0,QCoreApplication::arguments().at(1));
     context->setContextProperty("fsm", fsm);
-
-    //fsm->populate();
-
-
 }
 
 void fini() {
@@ -27,15 +17,11 @@ void fini() {
 
 int main(int argc, char *argv[])
 {
-
-
-    ///////////////////
-
     qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
     QApplication app(argc, argv);
+
 
 
     QQmlApplicationEngine engine;
@@ -49,12 +35,7 @@ int main(int argc, char *argv[])
 
     init(engine.rootContext());
 
-
-
     engine.load(url);
-
-
-
     int ret = app.exec();
 
     fini();

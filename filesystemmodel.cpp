@@ -5,23 +5,31 @@
 
 FileSystemModel::FileSystemModel(QObject * parent, const QString& root)
 {
+    Q_UNUSED(parent)
+
     this->root = root;
     this->currentRoot = root;
-
     fileSystemWatcher.addPath(root);
-
     populate();
-    connect(&fileSystemWatcher, SIGNAL(directoryChanged(const QString &)), this, SLOT(directoryChanged(const QString &)));
+
+    connect(&fileSystemWatcher,
+            SIGNAL(directoryChanged(const QString &)),
+            this,
+            SLOT(directoryChanged(const QString &)));
 }
 
 int FileSystemModel::rowCount(const QModelIndex& parent) const
 {
-   return mDatas.size();
+    Q_UNUSED(parent)
+
+    return mDatas.size();
 }
 
 int FileSystemModel::columnCount(const QModelIndex& parent) const
 {
-   return 1;
+    Q_UNUSED(parent)
+
+    return 1;
 }
 
 QVariant FileSystemModel::data(const QModelIndex &index, int role) const
@@ -29,7 +37,8 @@ QVariant FileSystemModel::data(const QModelIndex &index, int role) const
     if (!index.isValid())
         return QVariant();
 
-    switch (role) {
+    switch (role)
+    {
     case Qt::DisplayRole:
     case FileNameRole:
         return mDatas.at(index.row()).fileName();
@@ -51,7 +60,10 @@ QHash<int, QByteArray> FileSystemModel::roleNames() const
     return names;
 }
 
-void FileSystemModel::directoryChanged(const QString& newValue) {
+void FileSystemModel::directoryChanged(const QString& newValue)
+{
+    Q_UNUSED(newValue)
+
     populate();
 }
 
@@ -63,35 +75,32 @@ void FileSystemModel::populate()
     mDatas.clear();
 
     int len = fileSystemWatcher.directories().size();
-    if (len > 0) {
-        std::cout<<"len>0"<<std::endl;
-
+    if (len > 0)
+    {
         QDir dir(fileSystemWatcher.directories().first());
-        for (QString directory:dir.entryList(QDir::AllEntries | QDir::NoDot | QDir::NoSymLinks)) {
+        for (QString directory:dir.entryList(QDir::AllEntries | QDir::NoDot | QDir::NoSymLinks))
+        {
             if (currentRoot == root && directory == "..") continue;
             QFileInfo qFileInfo = QFileInfo(QFile(currentRoot + "/" + directory));
             if (qFileInfo.isFile() && !videoExtensions.contains(qFileInfo.completeSuffix())) continue;
             mDatas.append(QFileInfo(QFile(currentRoot + "/" + directory)));
         }
-    } else {
-        std::cout<<"len==0"<<std::endl;
+    }
+    else
+    {
         fileSystemWatcher.removePaths(fileSystemWatcher.directories());
         fileSystemWatcher.addPath(root);
         currentRoot = root;
-
         // here would ne a nice place to emit a signal for unmounted filesystem (root lost basically)
     }
     endResetModel();
 }
 
-Q_INVOKABLE void FileSystemModel::select(const QString &path) {
-    std::cout << path.toStdString() << std::endl;
+Q_INVOKABLE void FileSystemModel::select(const QString &path)
+{
     currentRoot = path;
     fileSystemWatcher.removePaths(fileSystemWatcher.directories());
-    //fileSystemWatcher.addPath(root);
-    //if (root!=currentRoot)
-        fileSystemWatcher.addPath(currentRoot);
+    fileSystemWatcher.addPath(currentRoot);
     populate();
-
 }
 

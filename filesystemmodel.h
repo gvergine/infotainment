@@ -15,7 +15,6 @@ public:
     int rowCount(const QModelIndex& parent = QModelIndex()) const;
     int columnCount(const QModelIndex& parent = QModelIndex()) const;
     QVariant data(const QModelIndex &index, int role) const;
-    void populate();
 
     virtual QHash<int, QByteArray> roleNames() const;
 
@@ -37,6 +36,9 @@ private:
    QFileSystemWatcher fileSystemWatcher;
    QString root;
    QString currentRoot;
+
+   void populate();
+
 };
 
 #endif // FILESYSTEMMODEL_H

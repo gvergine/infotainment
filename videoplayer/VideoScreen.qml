@@ -19,6 +19,10 @@ Item {
         width : 1024
         height : 600
 
+        onSourceChanged: {
+            titleText.text = source.toString().split('/').pop().split('#')[0].split('?')[0];
+        }
+
         Component.onCompleted: {
             notifyInterval = 15
         }
@@ -69,6 +73,7 @@ Item {
         backIcon.opacity = visibility? 1 : 0
         progressTime.opacity = visibility? 1 : 0
         timeText.opacity = visibility? 1 : 0
+        titleText.opacity = visibility? 1 : 0
     }
 
 
@@ -82,17 +87,15 @@ Item {
         opacity: 1
 
         gradient: Gradient {
-            GradientStop { position: 0.0; color: "#000000" }
-            GradientStop { position: 0.1; color: "#000000" }
-            GradientStop { position: 0.2; color: "#00ffffff" }
-            GradientStop { position: 0.8; color: "#00ffffff" }
-            GradientStop { position: 0.9; color: "#000000" }
-            GradientStop { position: 1.0; color: "#000000" }
+            GradientStop { position: 0.0; color: "#ff000000" }
+            GradientStop { position: 0.2; color: "#00000000" }
+            GradientStop { position: 0.8; color: "#00000000" }
+            GradientStop { position: 1.0; color: "#ff000000" }
         }
 
 
         Behavior on opacity {
-            NumberAnimation { duration: 1000 }
+            NumberAnimation { duration: 100 }
         }
     }
 
@@ -113,7 +116,7 @@ Item {
 
 
         Behavior on opacity {
-            NumberAnimation { duration: 1000 }
+            NumberAnimation { duration: 100 }
         }
     }
 
@@ -134,7 +137,7 @@ Item {
 
 
            Behavior on opacity {
-               NumberAnimation { duration: 1000 }
+               NumberAnimation { duration: 100 }
            }
        }
 
@@ -187,7 +190,7 @@ Item {
            }
 
            Behavior on opacity {
-               NumberAnimation { duration: 1000 }
+               NumberAnimation { duration: 100 }
            }
      }
 
@@ -206,7 +209,29 @@ Item {
 
 
          Behavior on opacity {
-             NumberAnimation { duration: 1000 }
+             NumberAnimation { duration: 100 }
+         }
+     }
+
+     Text {
+         id: titleText
+         x:150
+         y:20
+         width: 720
+         height: 64
+         text: "--"
+         color: "#ffffff"
+         font.pointSize: 20
+         font.weight: Font.Thin
+         font.family: "Helvetica"
+         horizontalAlignment: Text.AlignLeft
+         elide: Text.ElideRight
+
+
+
+
+         Behavior on opacity {
+             NumberAnimation { duration: 100 }
          }
      }
 
