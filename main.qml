@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.12
 import "home" as Home
 import "maps" as Maps
 import "videoplayer" as VideoPlayer
+import "standby" as Standby
 
 Window {
     id: window
@@ -22,18 +23,27 @@ Window {
 
         Home.Home {
             onAppSelected: layout.currentIndex = appId
-
         }
 
         Maps.Maps {
             onHomeButton: layout.currentIndex = 0
-
         }
 
         VideoPlayer.VideoPlayer {
             onHomeButton: layout.currentIndex = 0
-
         }
+
+        Standby.Standby {
+            onResumeEvent: layout.currentIndex = 0
+        }
+        Standby.Standby {
+            onResumeEvent: layout.currentIndex = 0
+        }
+        Standby.Standby {
+            onResumeEvent: layout.currentIndex = 0
+        }
+
+
 
 
     }

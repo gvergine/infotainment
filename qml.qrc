@@ -14,5 +14,16 @@
         <file>videoplayer/SelectVideo.qml</file>
         <file>videoplayer/VideoScreen.qml</file>
         <file>assets/playicon.png</file>
+        <file>standby/Standby.qml</file>
+        <file>standby/Clock.qml</file>
+        <file>assets/second.png</file>
+        <file>assets/quit.png</file>
+        <file>assets/minute.png</file>
+        <file>assets/hour.png</file>
+        <file>assets/clock-night.png</file>
+        <file>assets/clock.png</file>
+        <file>assets/center.png</file>
+        <file>assets/background.png</file>
+        <file>assets/arrow.png</file>
     </qresource>
 </RCC>

@@ -31,6 +31,23 @@ Item
         zoomLevel: 14
     }
 
+    Rectangle {
+        id: background
+        y: 0
+        x: 0
+        width: 1024
+        height: 600
+        opacity: 1
+
+        gradient: Gradient {
+            GradientStop { position: 0.0; color: "#ff000000" }
+            GradientStop { position: 0.2; color: "#00000000" }
+            GradientStop { position: 0.8; color: "#00000000" }
+            GradientStop { position: 1.0; color: "#ff000000" }
+        }
+
+    }
+
     Image {
         x:20
         y:20
@@ -45,6 +62,7 @@ Item
             }
         }
     }
+
 
 
 

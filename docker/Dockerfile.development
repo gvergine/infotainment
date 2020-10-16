@@ -5,13 +5,26 @@ RUN \
     export DEBIAN_FRONTEND=noninteractive && \
     apt update && \
     apt -y upgrade && \
-    apt -y install \
+    apt -y install --no-install-recommends \
         bash build-essential clang cmake cppcheck curl gdb git gperf iputils-ping \
         libboost-all-dev libfcgi-dev libgl1-mesa-dev libjemalloc-dev libjemalloc2 \
         libmlpack-dev linux-tools-generic nano spawn-fcgi valgrind wget \
-        qt5-default qtdeclarative5-dev qtvirtualkeyboard-plugin libqt5virtualkeyboard5-dev && \
+        qt5-default qtdeclarative5-dev qtvirtualkeyboard-plugin libqt5virtualkeyboard5-dev \
+        qml-module-qtquick-layouts qml-module-qtquick-window2 qml-module-qtquick-controls2 qml-module-qtquick-extras \
+        qml-module-qtpositioning qtpositioning5-dev qml-module-qtlocation qtlocation5-dev \
+        qml-module-qtgraphicaleffects qml-module-qtqml-models2 qml-module-qtmultimedia qtmultimedia5-dev \
+        qml-module-qt-labs-folderlistmodel qml-module-qt-labs-location qml-module-qt-labs-platform \
+        qml-module-qt-labs-qmlmodels qml-module-qt-labs-settings qml-module-qt-labs-sharedimage \ 
+        libqt5multimedia5-plugins libnvidia-gl-435 && \
     apt -y autoremove && \
     apt -y autoclean && \
     apt -y clean && \
     rm -rf /var/lib/apt/lists/* && \
     exit 0
+
+RUN groupadd -g 1000 developer
+RUN useradd -d /home/developer -s /bin/bash -m developer -u 1000 -g 1000
+USER developer
+ENV HOME /home/developer
+WORKDIR /home/developer
+
