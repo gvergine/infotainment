@@ -19,7 +19,7 @@ Window {
     StackLayout {
         id: layout
         anchors.fill: parent
-        currentIndex: 0
+        currentIndex: 4
 
         Home.Home {
             onAppSelected: layout.currentIndex = appId

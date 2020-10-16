@@ -3,9 +3,7 @@ import QtQuick 2.0
 Item {
     id : clock
     width: 200;
-
-
-    height: 240;
+    height: 200;
 
 
     property int hours
@@ -24,13 +22,13 @@ Item {
     }
 
     Timer {
-        interval: 100; running: true; repeat: true;
+        interval: 500; running: true; repeat: true;
         onTriggered: clock.timeChanged()
     }
 
     Item {
         anchors.centerIn: parent
-        width: 200; height: 240
+        width: 200; height: 200
 
         Image { id: background; source: "../assets/clock.png"; visible: clock.night == false }
         Image { source: "../assets/clock-night.png"; visible: clock.night == true }

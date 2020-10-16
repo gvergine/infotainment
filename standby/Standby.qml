@@ -7,6 +7,8 @@ Item
     id: root
     signal resumeEvent()
 
+
+
     Rectangle {
         anchors.fill: parent
         color: "#000000"
@@ -25,7 +27,7 @@ Item
         anchors.fill: parent
 
 
-        property bool flipped: false
+        property bool flipped: true
 
         front:
             Clock {
