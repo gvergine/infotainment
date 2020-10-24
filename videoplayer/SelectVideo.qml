@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQml.Models 2.2
+import QtQuick.Controls 2.12
 
 Item {
 
@@ -28,7 +29,7 @@ Item {
         }
     }
 
-    Text {
+    Label {
         x: 160
         y: 25
         text: "Select video"

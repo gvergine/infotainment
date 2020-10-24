@@ -9,20 +9,18 @@ Item {
     property int hours
     property int minutes
     property int seconds
-    property real shift
-    property bool night: true
-    property bool internationalTime: false //Unset for local time
 
     function timeChanged() {
         var date = new Date;
-        hours = internationalTime ? date.getUTCHours() + Math.floor(clock.shift) : date.getHours()
-      //  night = ( hours < 7 || hours > 19 )
-        minutes = internationalTime ? date.getUTCMinutes() + ((clock.shift % 1) * 60) : date.getMinutes()
+        hours = date.getHours()
+        minutes = date.getMinutes()
         seconds = date.getUTCSeconds();
     }
 
+
     Timer {
-        interval: 500; running: true; repeat: true;
+        id: timer
+        interval: 100; running: true; repeat: true;
         onTriggered: clock.timeChanged()
     }
 
@@ -30,8 +28,9 @@ Item {
         anchors.centerIn: parent
         width: 200; height: 200
 
-        Image { id: background; source: "../assets/clock.png"; visible: clock.night == false }
-        Image { source: "../assets/clock-night.png"; visible: clock.night == true }
+        Image {
+            source: "../assets/clock-night.png";
+        }
 
         Image {
             x: 92.5; y: 27
@@ -72,9 +71,6 @@ Item {
             }
         }
 
-        Image {
-            anchors.centerIn: background; source: "../assets/center.png"
-        }
 
 
     }

@@ -9,6 +9,19 @@ Item
     id: root
     signal homeButton()
 
+    PositionSource {
+        id: src
+        updateInterval: 1000
+        active: true
+
+        onPositionChanged: {
+            var coord = src.position.coordinate;
+            map.center = QtPositioning.coordinate( coord.latitude, coord.longitude)
+            map.zoomLevel = map.maximumZoomLevel
+            console.log("Coordinate:", coord.longitude, coord.latitude);
+        }
+    }
+
     Rectangle {
         anchors.fill: parent
         color: "#0000ff"
@@ -25,6 +38,7 @@ Item
     }
 
     Map {
+        id: map
         anchors.fill: parent
         plugin: mapPlugin
         center: QtPositioning.coordinate(59.91, 10.75) // Oslo
@@ -37,7 +51,6 @@ Item
         x: 0
         width: 1024
         height: 600
-        opacity: 1
 
         gradient: Gradient {
             GradientStop { position: 0.0; color: "#ff000000" }
@@ -45,6 +58,7 @@ Item
             GradientStop { position: 0.8; color: "#00000000" }
             GradientStop { position: 1.0; color: "#ff000000" }
         }
+
 
     }
 

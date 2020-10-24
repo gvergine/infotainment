@@ -95,7 +95,7 @@ Item {
 
 
         Behavior on opacity {
-            NumberAnimation { duration: 100 }
+            NumberAnimation { duration: 1000 }
         }
     }
 
@@ -116,7 +116,7 @@ Item {
 
 
         Behavior on opacity {
-            NumberAnimation { duration: 100 }
+            NumberAnimation { duration: 1000 }
         }
     }
 
@@ -137,7 +137,7 @@ Item {
 
 
            Behavior on opacity {
-               NumberAnimation { duration: 100 }
+               NumberAnimation { duration: 1000 }
            }
        }
 
@@ -190,7 +190,7 @@ Item {
            }
 
            Behavior on opacity {
-               NumberAnimation { duration: 100 }
+               NumberAnimation { duration: 1000 }
            }
      }
 
@@ -209,7 +209,7 @@ Item {
 
 
          Behavior on opacity {
-             NumberAnimation { duration: 100 }
+             NumberAnimation { duration: 1000 }
          }
      }
 
@@ -231,7 +231,7 @@ Item {
 
 
          Behavior on opacity {
-             NumberAnimation { duration: 100 }
+             NumberAnimation { duration: 1000 }
          }
      }
 

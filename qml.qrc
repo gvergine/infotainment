@@ -23,7 +23,7 @@
         <file>assets/clock-night.png</file>
         <file>assets/clock.png</file>
         <file>assets/center.png</file>
-        <file>assets/background.png</file>
         <file>assets/arrow.png</file>
+        <file>assets/startupSound.wav</file>
     </qresource>
 </RCC>

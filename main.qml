@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.VirtualKeyboard 2.4
 import QtQuick.Layouts 1.12
+import QtMultimedia 5.12
 
 import "home" as Home
 import "maps" as Maps
@@ -15,6 +16,16 @@ Window {
     visible: true
     title: qsTr("Infotainment")
     color: "#000000"
+
+
+    SoundEffect {
+        id: startupSound
+        source: "assets/startupSound.wav"
+    }
+
+    Component.onCompleted: {
+        startupSound.play()
+    }
 
     StackLayout {
         id: layout
